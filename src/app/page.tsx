@@ -28,7 +28,6 @@ export default function Home() {
       if (res.ok) {
         setStep('success');
       } else {
-        // Fallback on success anyway for UX if API fails in dev
         setStep('success');
       }
     } catch (err) {
@@ -52,18 +51,12 @@ export default function Home() {
 
       {/* Hero Section */}
       <main className="max-w-3xl mx-auto px-6 pt-24 pb-32 text-center flex flex-col items-center">
-        
-        <div className="inline-flex items-center space-x-2 bg-neutral-900/50 border border-neutral-800 rounded-full px-4 py-1.5 text-sm font-medium text-indigo-400 mb-8">
-          <Sparkles className="w-4 h-4" />
-          <span>The All-in-One AI Creator Studio</span>
-        </div>
-
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6">
-          Create Viral Shorts <br className="hidden md:block" /> with AI.
+          Create Viral Shorts <br className="hidden md:block" /> with AI
         </h1>
         
         <p className="text-lg md:text-xl text-neutral-400 mb-12 max-w-2xl">
-          Tell Hukd what your video is about in plain English. Our AI generates the viral hook, the script, the premium voice, and the B-rolls in seconds.
+          Tell Hukd which kind of video you want to create in plain English, and our AI builds the first version for you.
         </p>
 
         {/* Interactive Prompt Area */}
@@ -94,8 +87,8 @@ export default function Home() {
 
           {step === 'email' && (
             <form onSubmit={handleWaitlist} className="flex flex-col p-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <h3 className="text-xl font-bold text-white mb-2 text-left">Great idea. Let's make it.</h3>
-              <p className="text-neutral-400 text-sm mb-6 text-left">Hukd is currently in private beta. Enter your email to get early access and generate this exact video.</p>
+              <h3 className="text-xl font-bold text-white mb-2 text-left">Great idea. Let's build it.</h3>
+              <p className="text-neutral-400 text-sm mb-6 text-left">Hukd is currently in private beta. Enter your email to get early access and generate your video.</p>
               
               <div className="flex flex-col sm:flex-row gap-3">
                 <input 
@@ -128,62 +121,104 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Steps Section (ShortcutStudio Clone style) */}
-      <section className="border-t border-neutral-900 bg-[#050505] py-24">
-        <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-12">
+      {/* Steps Section (Exactly matching ShortcutStudio flow) */}
+      <section className="border-t border-neutral-900 py-24">
+        <div className="max-w-4xl mx-auto px-6 grid md:grid-cols-3 gap-16">
           
           <div className="flex flex-col">
             <span className="text-indigo-500 font-mono text-sm font-bold tracking-widest mb-4">01</span>
             <h3 className="text-2xl font-bold text-white mb-4">Describe</h3>
-            <p className="text-neutral-400 leading-relaxed">
-              Tell Hukd which kind of video you want to create in plain English, and our AI writes the viral hook and the full script for you.
+            <p className="text-neutral-400 leading-relaxed text-sm">
+              Tell Hukd which kind of video you want to create in plain English, and our AI builds the first version for you.
             </p>
           </div>
 
           <div className="flex flex-col">
             <span className="text-indigo-500 font-mono text-sm font-bold tracking-widest mb-4">02</span>
             <h3 className="text-2xl font-bold text-white mb-4">Refine</h3>
-            <p className="text-neutral-400 leading-relaxed">
-              Use our visual timeline to swap B-rolls from our high-retention library, adjust captions, and preview the premium ElevenLabs voiceover.
+            <p className="text-neutral-400 leading-relaxed text-sm">
+              Use the visual editor to tweak clips, adjust captions, and perfect your video's pacing.
             </p>
           </div>
 
           <div className="flex flex-col">
             <span className="text-indigo-500 font-mono text-sm font-bold tracking-widest mb-4">03</span>
             <h3 className="text-2xl font-bold text-white mb-4">Export & Post</h3>
-            <p className="text-neutral-400 leading-relaxed">
-              Download the fully assembled .mp4 file in 9:16 format, ready to be uploaded directly to TikTok, Shorts, or Reels.
+            <p className="text-neutral-400 leading-relaxed text-sm">
+              Download the MP4 file and post it directly on TikTok, Reels, or YouTube Shorts.
             </p>
           </div>
 
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* Deep Dive Features Section */}
+      <section className="bg-[#050505] border-t border-neutral-900 py-24">
+        <div className="max-w-4xl mx-auto px-6 space-y-16">
+          
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-3">Instant Generation</h3>
+              <p className="text-neutral-400 leading-relaxed">
+                Go from prompt to a fully functional, edited video in seconds using our advanced AI models. No more spending hours finding the right footage or syncing audio.
+              </p>
+            </div>
+            {/* Placeholder for future UI screenshot */}
+            <div className="h-48 bg-neutral-900 rounded-xl border border-neutral-800 hidden md:block"></div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            {/* Placeholder for future UI screenshot */}
+            <div className="h-48 bg-neutral-900 rounded-xl border border-neutral-800 hidden md:block"></div>
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-3">Visual Editor</h3>
+              <p className="text-neutral-400 leading-relaxed">
+                Tweaking your video is as easy as dragging blocks. See changes in real-time. Swap a B-roll, change a caption style, or regenerate a specific audio segment with one click.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Expanded FAQ Section */}
       <section className="py-24 max-w-3xl mx-auto px-6">
-        <div className="space-y-12">
+        <h2 className="text-3xl font-bold text-white mb-12 text-center">Frequently Asked Questions</h2>
+        <div className="space-y-10">
           
           <div>
-            <h4 className="text-xl font-bold text-white mb-3">Do I need video editing experience?</h4>
-            <p className="text-neutral-400 leading-relaxed">No. Just describe what you want your video to be about. Our AI handles the pacing, the jump cuts, the captions, and the audio mixing.</p>
+            <h4 className="text-lg font-bold text-white mb-2">Do I need video editing experience?</h4>
+            <p className="text-neutral-400 leading-relaxed text-sm">No. Just describe what you want your video to do in plain English. Our AI handles the pacing, logic, and structure. That said, we do make it easy for you to change your video.</p>
           </div>
 
           <div>
-            <h4 className="text-xl font-bold text-white mb-3">Where do the B-rolls come from?</h4>
-            <p className="text-neutral-400 leading-relaxed">We maintain a massive, constantly updated library of high-retention, copyright-safe clips (satisfying loops, gameplay, cinematic cuts) specifically curated for short-form content.</p>
+            <h4 className="text-lg font-bold text-white mb-2">How do I get the video on my phone?</h4>
+            <p className="text-neutral-400 leading-relaxed text-sm">We generate a downloadable .mp4 file. You can save it directly to your camera roll and upload it to your favorite social platform.</p>
           </div>
 
           <div>
-            <h4 className="text-xl font-bold text-white mb-3">Are the voices realistic?</h4>
-            <p className="text-neutral-400 leading-relaxed">Yes. We natively integrate the highest tier of ElevenLabs AI voices. No robotic text-to-speech. Pure emotion, pacing, and drama.</p>
+            <h4 className="text-lg font-bold text-white mb-2">Can the AI make any video I describe?</h4>
+            <p className="text-neutral-400 leading-relaxed text-sm">While the AI is powerful, it currently excels at faceless, narrative-driven, and B-roll heavy content. We are constantly expanding our visual library.</p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-bold text-white mb-2">Where do the B-rolls come from?</h4>
+            <p className="text-neutral-400 leading-relaxed text-sm">We maintain a massive, constantly updated library of high-retention, copyright-safe clips specifically curated for short-form content. You don't need external subscriptions.</p>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-bold text-white mb-2">Does this work for YouTube and TikTok too?</h4>
+            <p className="text-neutral-400 leading-relaxed text-sm">Yes. All our generated videos are formatted in vertical 9:16 aspect ratio, perfectly optimized for TikTok, Instagram Reels, and YouTube Shorts.</p>
           </div>
 
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-neutral-900 py-12 text-center text-sm text-neutral-600">
-        <p>© 2026 Hukd Studio. All rights reserved.</p>
+      <footer className="border-t border-neutral-900 py-12 text-center">
+        <h2 className="text-xl font-bold text-white mb-4">Get in Touch</h2>
+        <p className="text-sm text-neutral-500 mb-8">Have questions or need enterprise support?</p>
+        <p className="text-xs text-neutral-700">© 2026 Hukd Studio. All rights reserved.</p>
       </footer>
 
     </div>
