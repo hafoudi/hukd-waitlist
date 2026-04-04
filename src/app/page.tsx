@@ -1,107 +1,48 @@
-"use client";
-
-import { useState } from "react";
-import { ArrowRight, Loader2, Sparkles } from "lucide-react";
+import React from 'react';
+import { Search } from 'lucide-react';
 
 export default function Home() {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [message, setMessage] = useState("");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("loading");
-    setMessage("");
-
-    try {
-      const res = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        setStatus("success");
-        setMessage("You're on the list. We'll be in touch soon.");
-        setEmail("");
-      } else {
-        setStatus("error");
-        setMessage(data.error || "Something went wrong. Please try again.");
-      }
-    } catch (err) {
-      setStatus("error");
-      setMessage("Failed to connect. Please try again later.");
-    }
-  };
-
   return (
-    <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center relative overflow-hidden font-sans">
-      {/* Background gradients */}
-      <div className="absolute top-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-500/10 blur-[120px]" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-fuchsia-500/10 blur-[120px]" />
+    <div className="min-h-screen bg-[#0A0A0A] text-white flex flex-col items-center justify-center p-4">
+      
+      {/* Header Minimaliste */}
+      <div className="absolute top-6 left-6 text-2xl font-black tracking-tighter text-white">
+        HUKD<span className="text-blue-600">.</span>
       </div>
 
-      <div className="z-10 w-full max-w-3xl px-6 flex flex-col items-center text-center">
-        {/* Badge */}
-        <div className="mb-8 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-neutral-300">
-          <Sparkles className="w-4 h-4 text-indigo-400" />
-          <span>SaaS for Content Creators</span>
-        </div>
-
-        {/* Hero Copy */}
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-500 mb-6">
-          Create faster. <br className="hidden md:block" />
-          Scale harder.
+      <div className="w-full max-w-3xl flex flex-col items-center text-center space-y-8 mt-[-10vh]">
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-neutral-100">
+          Que vas-tu <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400">créer</span> aujourd'hui ?
         </h1>
         
-        <p className="text-lg md:text-xl text-neutral-400 mb-10 max-w-2xl leading-relaxed">
-          The ultimate AI toolkit to generate hooks, scripts, and thumbnails for TikTok, Reels, and YouTube Shorts in seconds. Stop editing, start publishing.
+        <p className="text-neutral-400 text-lg md:text-xl max-w-xl">
+          Entre ton idée. On génère le script, le hook, l'audio et les B-Rolls en 5 secondes.
         </p>
 
-        {/* Waitlist Form */}
-        <form onSubmit={handleSubmit} className="w-full max-w-md relative mb-6">
-          <div className="relative flex items-center">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email address"
-              required
-              disabled={status === "loading" || status === "success"}
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 pr-32 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition-all disabled:opacity-50"
+        {/* Search Bar Type Google */}
+        <div className="w-full relative group mt-8">
+          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+          <div className="relative flex items-center bg-neutral-900 border border-neutral-800 rounded-2xl p-2 shadow-2xl">
+            <Search className="w-6 h-6 text-neutral-500 ml-4" />
+            <input 
+              type="text" 
+              placeholder="Ex: Une vidéo sur les arnaques du dropshipping..." 
+              className="w-full bg-transparent border-none text-white px-4 py-4 focus:outline-none text-lg placeholder-neutral-600"
             />
-            <button
-              type="submit"
-              disabled={status === "loading" || status === "success"}
-              className="absolute right-2 px-5 py-2 bg-white text-black font-medium rounded-lg hover:bg-neutral-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[100px]"
-            >
-              {status === "loading" ? (
-                <Loader2 className="w-5 h-5 animate-spin text-black" />
-              ) : status === "success" ? (
-                "Joined"
-              ) : (
-                <>
-                  Join <ArrowRight className="w-4 h-4 ml-1" />
-                </>
-              )}
+            <button className="bg-white text-black font-bold px-8 py-3 rounded-xl hover:bg-neutral-200 transition-colors">
+              Générer
             </button>
           </div>
-          
-          {/* Status Message */}
-          {message && (
-            <p className={`mt-4 text-sm font-medium ${status === "success" ? "text-green-400" : "text-red-400"}`}>
-              {message}
-            </p>
-          )}
-        </form>
+        </div>
 
-        <p className="text-sm text-neutral-500">
-          Join 0 creators already on the waitlist.
-        </p>
+        <div className="flex space-x-4 text-sm text-neutral-500 mt-6 font-medium">
+          <span className="hover:text-neutral-300 cursor-pointer transition-colors">🎯 Hooks</span>
+          <span>•</span>
+          <span className="hover:text-neutral-300 cursor-pointer transition-colors">🎙️ Voix ElevenLabs</span>
+          <span>•</span>
+          <span className="hover:text-neutral-300 cursor-pointer transition-colors">🎬 B-Rolls Viraux</span>
+        </div>
       </div>
-    </main>
+    </div>
   );
 }
